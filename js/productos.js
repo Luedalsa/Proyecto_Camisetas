@@ -3,6 +3,8 @@
 // Hoy los datos son de ejemplo; después pueden venir de la base de datos.
 // Para cambiar a Supabase solo hay que reemplazar el cuerpo de cargarProductos().
 
+import { supabase } from "./supabase.js";
+
 /* ========================================================================
    POO: Productos
    ======================================================================== */
@@ -130,5 +132,15 @@ const PRODUCTOS_EJEMPLO = [
 ];
 
 export async function cargarProductos() {
-  return PRODUCTOS_EJEMPLO.map((datos) => new Productos(datos));
+  try {
+    const { data, error } = await supabase.from("productos").select("*").order("id");
+    if (error) throw error;
+    return data.map((fila) => new Productos({
+      ...fila,
+      colorNombre: fila.color_nombre,   // la BD usa snake_case
+    }));
+  } catch (error) {
+    console.warn("Sin conexión a la BD, usando datos de ejemplo:", error);
+    return PRODUCTOS_EJEMPLO.map((datos) => new Productos(datos));
+  }
 }
