@@ -259,3 +259,48 @@ main { flex: 1; }
   border-radius: 0.375rem;
   color: #fff;
 }
+/* ===== Variables y componentes compartidos ===== */
+:root { --marca: #e08524; }
+
+.btn-brand {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+}
+.btn-brand:hover,
+.btn-brand:focus {
+  background-color: #c97218;
+  border-color: #c97218;
+  color: #fff;
+}
+
+/* Tarjetas con animación al pasar el cursor */
+.producto,
+.acceso {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.producto:hover,
+.acceso:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .15);
+}
+
+.producto-imagen {
+  background-color: #f1f1f1;
+  padding: 1.5rem;
+}
+.producto-imagen svg { width: 100%; max-width: 140px; }
+
+/* Foco visible para quien navega con teclado */
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible {
+  outline: 3px solid var(--marca);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .producto,
+  .acceso,
+  .producto-imagen { transition: none; }
+}
