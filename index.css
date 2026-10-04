@@ -1,0 +1,49 @@
+/* css/index.css — estilos solo de la página de inicio */
+
+:root { --marca: #e08524; }
+
+.btn-brand {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+}
+.btn-brand:hover,
+.btn-brand:focus {
+  background-color: #c97218;
+  border-color: #c97218;
+  color: #fff;
+}
+
+.hero-shirt {
+  width: 100%;
+  max-width: 380px;
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, .2));
+  transition: transform .3s ease;
+}
+.hero-shirt:hover { transform: rotate(-4deg) scale(1.04); }
+
+.paso-icono,
+.acceso-icono { font-size: 2.5rem; }
+
+.cta-banda { background-color: var(--marca); }
+
+/* Tarjetas con animación al pasar el cursor */
+.producto,
+.acceso {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.producto:hover,
+.acceso:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .15);
+}
+
+.producto-imagen {
+  background-color: #f1f1f1;
+  padding: 1.5rem;
+}
+.producto-imagen svg { width: 100%; max-width: 140px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-shirt, .producto, .acceso { transition: none; }
+}

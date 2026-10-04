@@ -5,14 +5,15 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Camisetas | Inicio</title>
-  <meta name="description" content="">
+  <meta name="description" content="Diseña tu propia camiseta: mueve, escala y rota tu arte, visualízala en 3D o expórtala a PDF.">
 
-  <!-- Bootstrap primero, tu CSS después -->
+  <!-- Bootstrap primero, luego tus CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/index.css">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
+  <meta property="og:title" content="Camisetas | Diseña tu camiseta">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
   <meta property="og:image:alt" content="">
@@ -26,42 +27,168 @@
 
 <body class="d-flex flex-column min-vh-100">
 
-<nav class="navbar navbar-expand-xl navbar-dark bg-dark sticky-top" aria-label="Navegación principal">
-  <div class="container-fluid">
-    <a class="navbar-brand fw-bold" href="index.html">Camisetas</a>
+<!-- ENCABEZADO + NAVEGACIÓN -->
+<header>
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark sticky-top" aria-label="Navegación principal">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">Camisetas</a>
 
-    <button class="navbar-toggler" type="button"
-            data-bs-toggle="collapse" data-bs-target="#menu"
-            aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
 
-    <div class="collapse navbar-collapse" id="menu">
-      <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
-        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina2.html">Productos</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina3.html">Carrito</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina4.html">FAQ y contacto</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina5.html">Reseñas</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina6.html">Ayuda</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina7.html">Lealtad y eventos</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina8.html">Nosotros</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina9.html">Recursos</a></li>
-        <li class="nav-item"><a class="nav-link" href="pagina10.html">Diseñador</a></li>
-      </ul>
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina2.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina3.html">Carrito</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina4.html">FAQ y contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina5.html">Reseñas</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina6.html">Ayuda</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina7.html">Lealtad y eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina8.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina9.html">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina10.html">Diseñador</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
+</header>
 
-Content
+<main>
 
+  <!-- 1. HERO -->
+  <section class="hero bg-light py-5" aria-labelledby="hero-titulo">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-lg-6">
+          <h1 id="hero-titulo" class="display-4 fw-bold">Diseña tu camiseta a tu estilo</h1>
+          <p class="lead text-secondary">
+            Sube tu arte, muévelo, escálalo y rótalo sobre la camiseta. Míralo en 3D
+            o expórtalo a PDF antes de comprar.
+          </p>
+          <div class="d-flex flex-wrap gap-2">
+            <a href="pagina10.html" class="btn btn-brand btn-lg">Diseña la tuya</a>
+            <a href="pagina2.html" class="btn btn-outline-dark btn-lg">Ver productos</a>
+          </div>
+        </div>
+        <div class="col-lg-6 text-center">
+          <!-- Imagen grande: camiseta en SVG. Puedes cambiarla por <img src="img/hero.jpg" class="img-fluid" alt="..."> -->
+          <svg class="hero-shirt" viewBox="0 0 100 100" role="img" aria-label="Camiseta de ejemplo">
+            <path d="M30 10 L10 25 L20 40 L28 35 L28 90 L72 90 L72 35 L80 40 L90 25 L70 10 Q50 24 30 10 Z"
+                  fill="#e08524" stroke="#212529" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="50" cy="55" r="11" fill="#fff" opacity=".9"/>
+            <path d="M44 55 L50 48 L56 55 L50 62 Z" fill="#212529"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. CÓMO FUNCIONA -->
+  <section class="py-5" aria-labelledby="como-titulo">
+    <div class="container">
+      <h2 id="como-titulo" class="text-center fw-bold mb-4">Cómo funciona</h2>
+      <div class="row g-4 text-center">
+        <div class="col-md-4">
+          <div class="paso-icono" aria-hidden="true">👕</div>
+          <h3 class="h5 mt-3">1. Elige tu camiseta</h3>
+          <p class="text-secondary mb-0">Escoge modelo, color y talla entre nuestros productos.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="paso-icono" aria-hidden="true">🎨</div>
+          <h3 class="h5 mt-3">2. Diseña</h3>
+          <p class="text-secondary mb-0">Mueve, escala y rota tu arte directamente en el editor.</p>
+        </div>
+        <div class="col-md-4">
+          <div class="paso-icono" aria-hidden="true">📦</div>
+          <h3 class="h5 mt-3">3. Visualiza y compra</h3>
+          <p class="text-secondary mb-0">Revisa tu diseño en 3D o expórtalo a PDF y agrégalo al carrito.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. DESTACADOS (se generan desde js/index.js) -->
+  <section class="bg-light py-5" aria-labelledby="destacados-titulo">
+    <div class="container">
+      <div class="d-flex justify-content-between align-items-end mb-4">
+        <h2 id="destacados-titulo" class="fw-bold mb-0">Destacados y novedades</h2>
+        <a href="pagina2.html" class="link-dark">Ver todos →</a>
+      </div>
+      <div id="destacados" class="row g-4"></div>
+    </div>
+  </section>
+
+  <!-- 4. ACCESOS RÁPIDOS -->
+  <section class="py-5" aria-labelledby="accesos-titulo">
+    <div class="container">
+      <h2 id="accesos-titulo" class="text-center fw-bold mb-4">Explora el sitio</h2>
+      <div class="row g-4">
+        <div class="col-6 col-lg-3">
+          <div class="card acceso h-100 text-center position-relative">
+            <div class="card-body">
+              <div class="acceso-icono" aria-hidden="true">🛍️</div>
+              <h3 class="h5 mt-2"><a href="pagina2.html" class="stretched-link text-decoration-none text-dark">Productos</a></h3>
+              <p class="text-secondary small mb-0">Catálogo completo con precios.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="card acceso h-100 text-center position-relative">
+            <div class="card-body">
+              <div class="acceso-icono" aria-hidden="true">✏️</div>
+              <h3 class="h5 mt-2"><a href="pagina10.html" class="stretched-link text-decoration-none text-dark">Diseñador</a></h3>
+              <p class="text-secondary small mb-0">Crea tu propio diseño.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="card acceso h-100 text-center position-relative">
+            <div class="card-body">
+              <div class="acceso-icono" aria-hidden="true">⭐</div>
+              <h3 class="h5 mt-2"><a href="pagina5.html" class="stretched-link text-decoration-none text-dark">Reseñas</a></h3>
+              <p class="text-secondary small mb-0">Lo que dicen nuestros clientes.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="card acceso h-100 text-center position-relative">
+            <div class="card-body">
+              <div class="acceso-icono" aria-hidden="true">🎁</div>
+              <h3 class="h5 mt-2"><a href="pagina7.html" class="stretched-link text-decoration-none text-dark">Lealtad y eventos</a></h3>
+              <p class="text-secondary small mb-0">Promociones y recompensas.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. LLAMADO A LA ACCIÓN FINAL -->
+  <section class="cta-banda text-center text-white py-5" aria-labelledby="cta-titulo">
+    <div class="container">
+      <h2 id="cta-titulo" class="fw-bold">¿Listo para crear tu primera camiseta?</h2>
+      <p class="mb-4">Empieza a diseñar ahora, es gratis probar el editor.</p>
+      <a href="pagina10.html" class="btn btn-dark btn-lg">Empieza a diseñar</a>
+    </div>
+  </section>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
 <footer class="bg-dark text-light text-center py-3 mt-auto">
+  <p class="mb-1"><a href="pagina5.html" class="link-light">Términos y privacidad</a> ·
+    <a href="pagina4.html" class="link-light">Contacto</a></p>
   <p class="mb-0">&copy; 2026 Camisetas</p>
 </footer>
 
 <!-- Scripts al final del body -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <script src="js/app.js"></script>
+<script src="js/index.js"></script>
 
 </body>
 
