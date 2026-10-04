@@ -1,0 +1,59 @@
+/* css/pagina2.css — estilos solo de la página de productos */
+
+:root { --marca: #e08524; }
+
+.btn-brand {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+}
+.btn-brand:hover,
+.btn-brand:focus {
+  background-color: #c97218;
+  border-color: #c97218;
+  color: #fff;
+}
+
+/* Tarjetas con animación al pasar el cursor */
+.producto {
+  transition: transform .2s ease, box-shadow .2s ease;
+  scroll-margin-top: 5rem; /* para que el navbar fijo no tape el producto al llegar desde #producto-N */
+}
+.producto:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .15);
+}
+
+.producto-imagen {
+  background-color: #f1f1f1;
+  padding: 1.5rem;
+  transition: opacity .2s ease, filter .2s ease;
+}
+.producto-imagen svg { width: 100%; max-width: 140px; }
+
+/* Producto sin existencias */
+.producto-agotado .producto-imagen {
+  opacity: .5;
+  filter: grayscale(.7);
+}
+
+/* Destaca la tarjeta cuando se llega desde "Ver más" del inicio */
+.resaltado { animation: resaltar 1.8s ease; }
+@keyframes resaltar {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(224, 133, 36, 0); }
+  30%      { box-shadow: 0 0 0 .4rem rgba(224, 133, 36, .6); }
+}
+
+/* Foco visible para quien navega con teclado */
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible {
+  outline: 3px solid var(--marca);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .producto,
+  .producto-imagen { transition: none; }
+  .resaltado { animation: none; outline: 3px solid var(--marca); }
+}

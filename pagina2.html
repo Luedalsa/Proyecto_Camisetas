@@ -1,15 +1,19 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/styles.css">
-  <meta name="description" content="">
+  <title>Camisetas | Productos</title>
+  <meta name="description" content="Catálogo de camisetas con precios y existencias. Agrega tus favoritas al carrito.">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
+  <!-- Bootstrap primero, luego tus CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pagina2.css">
+
+  <meta property="og:title" content="Camisetas | Productos">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
   <meta property="og:image:alt" content="">
@@ -21,11 +25,123 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+<!-- ENCABEZADO + NAVEGACIÓN -->
+<header>
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark sticky-top" aria-label="Navegación principal">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">Camisetas</a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina2.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina3.html">Carrito</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina4.html">FAQ y contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina5.html">Reseñas</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina6.html">Ayuda</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina7.html">Lealtad y eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina8.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina9.html">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina10.html">Diseñador</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 1. ENCABEZADO DE LA SECCIÓN + ACCESO AL CARRITO -->
+  <section class="bg-light py-4 border-bottom" aria-labelledby="productos-titulo">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div>
+        <h1 id="productos-titulo" class="h2 fw-bold mb-1">Productos</h1>
+        <p class="text-secondary mb-0">Elige tu camiseta, talla y cantidad. Después personalízala en el diseñador.</p>
+      </div>
+      <a href="pagina3.html" class="btn btn-brand btn-lg">
+        Ver carrito
+        <span id="contador-carrito" class="badge text-bg-light ms-1">0</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- 2. FILTROS -->
+  <section class="py-3" aria-label="Filtros del catálogo">
+    <div class="container">
+      <div class="row g-2 align-items-end">
+        <div class="col-md-5">
+          <label for="buscador" class="form-label small mb-1">Buscar por nombre</label>
+          <input id="buscador" type="search" class="form-control" placeholder="Ej. azul, básica…" autocomplete="off">
+        </div>
+        <div class="col-6 col-md-3">
+          <label for="filtro-color" class="form-label small mb-1">Color</label>
+          <select id="filtro-color" class="form-select">
+            <option value="">Todos</option>
+          </select>
+        </div>
+        <div class="col-6 col-md-4">
+          <label for="orden" class="form-label small mb-1">Ordenar por</label>
+          <select id="orden" class="form-select">
+            <option value="nombre">Nombre (A–Z)</option>
+            <option value="precio-asc">Precio: menor a mayor</option>
+            <option value="precio-desc">Precio: mayor a menor</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. CATÁLOGO (se genera desde js/pagina2.js) -->
+  <section class="pb-5" aria-label="Catálogo de camisetas">
+    <div class="container">
+      <div id="catalogo" class="row g-4"></div>
+
+      <!-- 4. SIN RESULTADOS -->
+      <div id="sin-resultados" class="text-center py-5 d-none">
+        <p class="h5 mb-2">No encontramos camisetas con esos filtros.</p>
+        <button id="limpiar-filtros" type="button" class="btn btn-outline-dark">Limpiar filtros</button>
+      </div>
+
+      <noscript>
+        <p class="alert alert-warning mt-3">Activa JavaScript para ver el catálogo y usar el carrito.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- Anuncios para lectores de pantalla (cambios en el carrito) -->
+  <div id="estado-carrito" class="visually-hidden" aria-live="polite"></div>
+
+  <!-- 5. AVISO (toast) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="aviso" class="toast align-items-center border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div id="aviso-texto" class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar aviso"></button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+<footer class="bg-dark text-light text-center py-3 mt-auto">
+  <p class="mb-1"><a href="pagina5.html" class="link-light">Términos y privacidad</a> ·
+    <a href="pagina4.html" class="link-light">Contacto</a></p>
+  <p class="mb-0">&copy; 2026 Camisetas</p>
+</footer>
+
+<!-- Scripts al final del body -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script src="js/pagina2.js"></script>
 
 </body>
 
