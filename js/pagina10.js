@@ -116,7 +116,7 @@ window.addEventListener("beforeunload", (evento) => {
    Lienzo
    ======================================================================== */
 function crearRecorte() {
-  return new Rect({ ...AREA, absolutePositioned: true });
+  return new Rect({ ...AREA, originX: "left", originY: "top", absolutePositioned: true });
 }
 
 function crearLienzo() {
@@ -129,13 +129,14 @@ function crearLienzo() {
   });
 
   camiseta = new Path(CAMISETA_PATH, {
+    originX: "left", originY: "top", // Fabric 7 usa el centro como origen por defecto
     left: 50, top: 50, scaleX: 5, scaleY: 5,
     fill: "#e08524", stroke: "#212529", strokeWidth: 0.6, strokeLineJoin: "round",
     selectable: false, evented: false, excludeFromExport: true,
   });
 
   guia = new Rect({
-    ...AREA,
+    ...AREA, originX: "left", originY: "top",
     fill: "transparent", stroke: "#212529", strokeWidth: 1.5, strokeDashArray: [6, 4],
     selectable: false, evented: false, excludeFromExport: true,
   });
