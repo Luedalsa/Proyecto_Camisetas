@@ -1,0 +1,47 @@
+/* css/pagina10.css — estilos solo de la página del diseñador */
+
+/* El lienzo mide 500 px fijos; si la pantalla es angosta, se desplaza dentro de su marco */
+.lienzo-marco {
+  background-color: #f1f1f1;
+  border: 1px solid #dee2e6;
+  border-radius: .5rem;
+  overflow: auto;
+  max-width: 100%;
+  width: fit-content;
+  margin-inline: auto;
+}
+.lienzo-marco .canvas-container { margin: 0 auto; }
+
+/* El lienzo se queda visible mientras bajas por el panel de herramientas */
+@media (min-width: 992px) {
+  .lienzo-sticky {
+    position: sticky;
+    top: 5rem;
+  }
+}
+
+.btn-brand:disabled {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+  opacity: .5;
+}
+
+/* Capas: la seleccionada se resalta con el color de la marca (texto oscuro para buen contraste) */
+.capas .list-group-item {
+  text-align: left;
+}
+.capas .list-group-item.active {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #212529;
+  font-weight: 600;
+}
+
+/* Foco visible para quien navega con teclado */
+.list-group-item:focus-visible,
+.form-range:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--marca);
+  outline-offset: 2px;
+}

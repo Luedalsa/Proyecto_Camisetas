@@ -1,31 +1,253 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/styles.css">
-  <meta name="description" content="">
+  <title>Camisetas | Diseñador</title>
+  <meta name="description" content="Diseña tu camiseta: agrega imágenes y texto, muévelos, escálalos y rótalos, y exporta el resultado a PDF.">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
+  <!-- Bootstrap primero, luego tus CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pagina10.css">
+
+  <meta property="og:title" content="Camisetas | Diseñador">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
   <meta property="og:image:alt" content="">
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
 
   <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+<!-- ENCABEZADO + NAVEGACIÓN -->
+<header>
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark sticky-top" aria-label="Navegación principal">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">Camisetas</a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina2.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina3.html">Carrito</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina4.html">FAQ y contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina5.html">Reseñas</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina6.html">Ayuda</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina7.html">Lealtad y eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina8.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina9.html">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina10.html">Diseñador</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 1. ENCABEZADO DE LA SECCIÓN -->
+  <section class="bg-light py-4 border-bottom" aria-labelledby="disenador-titulo">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div>
+        <h1 id="disenador-titulo" class="h2 fw-bold mb-1">Diseñador</h1>
+        <p class="text-secondary mb-0">Agrega tu arte, muévelo, escálalo y rótalo. Exporta el resultado a PDF.</p>
+      </div>
+      <div class="d-flex align-items-center gap-2">
+        <span id="estado-guardado" class="badge text-bg-secondary" role="status">Sin cambios</span>
+        <a href="pagina2.html" class="btn btn-outline-dark">Ver productos</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-4" aria-label="Editor de camisetas">
+    <div class="container">
+
+      <!-- 2. AVISO PARA MÓVILES (el editor móvil está fuera de alcance) -->
+      <div id="aviso-movil" class="text-center py-5 d-none">
+        <p class="h4 mb-2">El diseñador solo está disponible en computadora</p>
+        <p class="text-secondary mb-4">Abre esta página desde una pantalla más grande para editar tu camiseta.</p>
+        <a href="pagina2.html" class="btn btn-brand btn-lg">Ver productos</a>
+      </div>
+
+      <!-- 3. EDITOR -->
+      <div id="editor" class="row g-4">
+
+        <!-- Lienzo -->
+        <div class="col-lg-7">
+          <div class="lienzo-sticky">
+            <div class="lienzo-marco">
+              <canvas id="lienzo" width="500" height="500"
+                      aria-label="Lienzo con la camiseta y tu diseño. Usa el panel de capas y los controles para editarlo con teclado."></canvas>
+            </div>
+            <p class="small text-secondary mt-2 mb-0">
+              La línea punteada marca el área de impresión: lo que quede fuera no se imprime.
+            </p>
+            <p id="estado-seleccion" class="visually-hidden" aria-live="polite"></p>
+          </div>
+        </div>
+
+        <!-- Panel de herramientas -->
+        <div class="col-lg-5">
+
+          <section class="card mb-3" aria-labelledby="h-camiseta">
+            <div class="card-body">
+              <h2 id="h-camiseta" class="h6 mb-3">Camiseta</h2>
+              <label for="camiseta" class="form-label small mb-1">Modelo y color</label>
+              <select id="camiseta" class="form-select"></select>
+            </div>
+          </section>
+
+          <section class="card mb-3" aria-labelledby="h-agregar">
+            <div class="card-body">
+              <h2 id="h-agregar" class="h6 mb-3">Agregar</h2>
+
+              <label for="archivo-imagen" class="form-label small mb-1">Imagen (PNG, JPG o WebP, hasta 8 MB)</label>
+              <input id="archivo-imagen" type="file" class="form-control mb-3" accept="image/png,image/jpeg,image/webp">
+
+              <label for="texto-nuevo" class="form-label small mb-1">Texto</label>
+              <div class="input-group mb-2">
+                <input id="texto-nuevo" type="text" class="form-control" maxlength="40" placeholder="Escribe tu texto" autocomplete="off">
+                <button id="btn-texto" type="button" class="btn btn-brand">Agregar texto</button>
+              </div>
+
+              <div class="row g-2">
+                <div class="col-8">
+                  <label for="texto-fuente" class="form-label small mb-1">Fuente</label>
+                  <select id="texto-fuente" class="form-select form-select-sm">
+                    <option value="Arial">Arial</option>
+                    <option value="Georgia">Georgia</option>
+                    <option value="Courier New">Courier New</option>
+                    <option value="Impact">Impact</option>
+                    <option value="Trebuchet MS">Trebuchet MS</option>
+                  </select>
+                </div>
+                <div class="col-4">
+                  <label for="texto-color" class="form-label small mb-1">Color</label>
+                  <input id="texto-color" type="color" class="form-control form-control-color w-100" value="#ffffff">
+                </div>
+              </div>
+              <p class="small text-secondary mt-2 mb-0">Fuente y color se aplican al texto nuevo o al texto seleccionado.</p>
+            </div>
+          </section>
+
+          <section class="card mb-3" aria-labelledby="h-transformar">
+            <div class="card-body">
+              <h2 id="h-transformar" class="h6 mb-3">Elemento seleccionado</h2>
+
+              <label for="escala" class="form-label small mb-1">
+                Tamaño: <output id="escala-valor" for="escala">100%</output>
+              </label>
+              <input id="escala" type="range" class="form-range mb-2" min="5" max="400" step="1" value="100" disabled data-requiere-seleccion>
+
+              <label for="angulo" class="form-label small mb-1">
+                Rotación: <output id="angulo-valor" for="angulo">0°</output>
+              </label>
+              <input id="angulo" type="range" class="form-range mb-3" min="-180" max="180" step="1" value="0" disabled data-requiere-seleccion>
+
+              <div class="d-flex flex-wrap gap-2 mb-3">
+                <div class="btn-group" role="group" aria-label="Mover elemento">
+                  <button type="button" class="btn btn-outline-dark" data-mover="-1,0" aria-label="Mover a la izquierda" disabled data-requiere-seleccion>←</button>
+                  <button type="button" class="btn btn-outline-dark" data-mover="0,-1" aria-label="Mover hacia arriba" disabled data-requiere-seleccion>↑</button>
+                  <button type="button" class="btn btn-outline-dark" data-mover="0,1" aria-label="Mover hacia abajo" disabled data-requiere-seleccion>↓</button>
+                  <button type="button" class="btn btn-outline-dark" data-mover="1,0" aria-label="Mover a la derecha" disabled data-requiere-seleccion>→</button>
+                </div>
+                <div class="btn-group" role="group" aria-label="Rotar elemento">
+                  <button type="button" class="btn btn-outline-dark" data-girar="-15" aria-label="Rotar 15 grados a la izquierda" disabled data-requiere-seleccion>⟲</button>
+                  <button type="button" class="btn btn-outline-dark" data-girar="15" aria-label="Rotar 15 grados a la derecha" disabled data-requiere-seleccion>⟳</button>
+                </div>
+                <div class="btn-group" role="group" aria-label="Cambiar tamaño">
+                  <button type="button" class="btn btn-outline-dark" data-tamano="-10" aria-label="Hacer más pequeño" disabled data-requiere-seleccion>−</button>
+                  <button type="button" class="btn btn-outline-dark" data-tamano="10" aria-label="Hacer más grande" disabled data-requiere-seleccion>+</button>
+                </div>
+              </div>
+
+              <div class="d-flex flex-wrap gap-2">
+                <button id="btn-centrar" type="button" class="btn btn-outline-secondary btn-sm" disabled data-requiere-seleccion>Centrar</button>
+                <button id="btn-adelante" type="button" class="btn btn-outline-secondary btn-sm" disabled data-requiere-seleccion>Subir capa</button>
+                <button id="btn-atras" type="button" class="btn btn-outline-secondary btn-sm" disabled data-requiere-seleccion>Bajar capa</button>
+                <button id="btn-eliminar" type="button" class="btn btn-outline-danger btn-sm" disabled data-requiere-seleccion>Eliminar</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="card mb-3" aria-labelledby="h-capas">
+            <div class="card-body">
+              <h2 id="h-capas" class="h6 mb-3">Capas</h2>
+              <p id="capas-vacio" class="small text-secondary mb-0">Aún no hay elementos. Agrega una imagen o un texto.</p>
+              <ul id="lista-capas" class="list-group capas" aria-labelledby="h-capas"></ul>
+            </div>
+          </section>
+
+          <section class="card mb-3" aria-labelledby="h-acciones">
+            <div class="card-body">
+              <h2 id="h-acciones" class="h6 mb-3">Tu diseño</h2>
+              <div class="d-grid gap-2">
+                <button id="btn-guardar" type="button" class="btn btn-brand">Guardar diseño</button>
+                <button id="btn-pdf" type="button" class="btn btn-outline-dark">Exportar a PDF</button>
+                <div class="d-flex gap-2">
+                  <button id="btn-cargar" type="button" class="btn btn-outline-secondary flex-fill" disabled>Cargar guardado</button>
+                  <button id="btn-limpiar" type="button" class="btn btn-outline-danger flex-fill">Limpiar</button>
+                </div>
+              </div>
+              <p class="small text-secondary mt-3 mb-0">El diseño se guarda en este navegador. No necesitas cuenta.</p>
+            </div>
+          </section>
+
+          <details class="small">
+            <summary class="mb-2">Atajos de teclado</summary>
+            <ul class="mb-0">
+              <li>Flechas: mover 5 px (con Mayús, 20 px)</li>
+              <li><kbd>+</kbd> y <kbd>-</kbd>: cambiar tamaño</li>
+              <li><kbd>Q</kbd> y <kbd>E</kbd>: rotar 5°</li>
+              <li><kbd>Supr</kbd>: eliminar el elemento</li>
+              <li>Para elegir un elemento sin mouse, usa la lista de capas.</li>
+            </ul>
+          </details>
+
+        </div>
+      </div>
+
+      <noscript>
+        <p class="alert alert-warning mt-3">Activa JavaScript para usar el diseñador.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- 4. AVISO (toast) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="aviso" class="toast align-items-center border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div id="aviso-texto" class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar aviso"></button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+<footer class="bg-dark text-light text-center py-3 mt-auto">
+  <p class="mb-1"><a href="pagina5.html" class="link-light">Términos y privacidad</a> ·
+    <a href="pagina4.html" class="link-light">Contacto</a></p>
+  <p class="mb-0">&copy; 2026 Camisetas</p>
+</footer>
+
+<!-- Scripts al final del body. Parcel empaqueta los módulos de js/ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script type="module" src="js/pagina10.js"></script>
 
 </body>
 
