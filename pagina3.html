@@ -1,31 +1,182 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/styles.css">
-  <meta name="description" content="">
+  <title>Camisetas | Carrito</title>
+  <meta name="description" content="Revisa las camisetas que agregaste, quita las que no quieras y finaliza tu compra.">
 
-  <meta property="og:title" content="">
-  <meta property="og:type" content="">
+  <!-- Bootstrap primero, luego tus CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pagina3.css">
+
+  <meta property="og:title" content="Camisetas | Carrito">
+  <meta property="og:type" content="website">
   <meta property="og:url" content="">
   <meta property="og:image" content="">
   <meta property="og:image:alt" content="">
 
-  <link rel="icon" href="/favicon.ico" sizes="any">
-  <link rel="icon" href="/icon.svg" type="image/svg+xml">
-  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
 
   <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+<!-- ENCABEZADO + NAVEGACIÓN -->
+<header>
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark sticky-top" aria-label="Navegación principal">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">Camisetas</a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina2.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina3.html">Carrito</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina4.html">FAQ y contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina5.html">Reseñas</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina6.html">Ayuda</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina7.html">Lealtad y eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina8.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina9.html">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina10.html">Diseñador</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 1. ENCABEZADO DE LA SECCIÓN -->
+  <section class="bg-light py-4 border-bottom" aria-labelledby="carrito-titulo">
+    <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+      <div>
+        <h1 id="carrito-titulo" class="h2 fw-bold mb-1">Carrito</h1>
+        <p class="text-secondary mb-0">Revisa tus camisetas, quita las que no quieras y finaliza tu compra.</p>
+      </div>
+      <a href="pagina2.html" class="btn btn-outline-dark">Seguir comprando</a>
+    </div>
+  </section>
+
+  <section class="py-4" aria-label="Contenido del carrito">
+    <div class="container">
+
+      <!-- 2. CARRITO VACÍO (lo muestra js/pagina3.js) -->
+      <div id="carrito-vacio" class="text-center py-5 d-none">
+        <p class="h4 mb-2">Tu carrito está vacío</p>
+        <p class="text-secondary mb-4">Agrega camisetas desde el catálogo para verlas aquí.</p>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+          <a href="pagina2.html" class="btn btn-brand btn-lg">Ver productos</a>
+          <button id="btn-ejemplo" type="button" class="btn btn-outline-secondary btn-lg">Cargar artículos de ejemplo</button>
+        </div>
+      </div>
+
+      <!-- 3. CARRITO CON ARTÍCULOS -->
+      <div id="carrito-contenido" class="row g-4 d-none">
+
+        <!-- Lista de artículos -->
+        <div class="col-lg-8">
+          <div class="table-responsive">
+            <table class="table align-middle tabla-carrito">
+              <caption class="visually-hidden">Camisetas en tu carrito</caption>
+              <thead>
+              <tr>
+                <th scope="col"><span class="visually-hidden">Imagen</span></th>
+                <th scope="col">Producto</th>
+                <th scope="col" class="text-end">Precio</th>
+                <th scope="col" class="text-center">Cantidad</th>
+                <th scope="col" class="text-end">Subtotal</th>
+                <th scope="col"><span class="visually-hidden">Acciones</span></th>
+              </tr>
+              </thead>
+              <tbody id="lista-carrito"></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Resumen del pedido -->
+        <div class="col-lg-4">
+          <aside class="card resumen" aria-labelledby="resumen-titulo">
+            <div class="card-body">
+              <h2 id="resumen-titulo" class="h5 mb-3">Resumen del pedido</h2>
+              <dl class="row mb-3">
+                <dt class="col-7 fw-normal text-secondary">Artículos</dt>
+                <dd id="resumen-articulos" class="col-5 text-end mb-1">0</dd>
+                <dt class="col-7 fs-5">Total</dt>
+                <dd id="resumen-total" class="col-5 text-end fs-5 fw-bold mb-0">$0.00</dd>
+              </dl>
+              <div class="d-grid gap-2">
+                <button id="btn-finalizar" type="button" class="btn btn-brand btn-lg" disabled
+                        aria-describedby="ayuda-finalizar">Finalizar compra</button>
+                <button id="btn-vaciar" type="button" class="btn btn-outline-danger" disabled>Vaciar carrito</button>
+              </div>
+              <p id="ayuda-finalizar" class="small text-secondary mt-3 mb-0">
+                Para finalizar necesitas al menos un artículo en el carrito.
+              </p>
+            </div>
+          </aside>
+        </div>
+      </div>
+
+      <noscript>
+        <p class="alert alert-warning mt-3">Activa JavaScript para ver tu carrito.</p>
+      </noscript>
+    </div>
+  </section>
+
+  <!-- 4. CONFIRMACIÓN DE COMPRA -->
+  <div class="modal fade" id="modal-compra" tabindex="-1" aria-labelledby="modal-compra-titulo" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title h5" id="modal-compra-titulo">Compra realizada</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+        </div>
+        <div class="modal-body">
+          <p id="modal-resumen" class="mb-2"></p>
+          <p class="small text-secondary mb-0">Es un proyecto escolar: no se realizó ningún cobro.</p>
+        </div>
+        <div class="modal-footer">
+          <a href="index.html" class="btn btn-outline-dark">Ir al inicio</a>
+          <a href="pagina2.html" class="btn btn-brand">Seguir comprando</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. AVISO (toast) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="aviso" class="toast align-items-center border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div id="aviso-texto" class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar aviso"></button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+<footer class="bg-dark text-light text-center py-3 mt-auto">
+  <p class="mb-1"><a href="pagina5.html" class="link-light">Términos y privacidad</a> ·
+    <a href="pagina4.html" class="link-light">Contacto</a></p>
+  <p class="mb-0">&copy; 2026 Camisetas</p>
+</footer>
+
+<!-- Scripts al final del body. Parcel empaqueta los módulos de js/ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script type="module" src="js/pagina3.js"></script>
 
 </body>
 

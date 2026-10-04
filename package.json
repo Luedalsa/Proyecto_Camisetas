@@ -1,0 +1,13 @@
+{
+  "name": "camisetas",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Proyecto IL362 Programación para Internet",
+  "scripts": {
+    "start": "parcel \"*.html\"",
+    "build": "parcel build \"*.html\" --public-url ./ --no-source-maps"
+  },
+  "devDependencies": {
+    "parcel": "^2.12.0"
+  }
+}

@@ -1,0 +1,49 @@
+/* css/pagina3.css — estilos solo de la página del carrito */
+
+:root { --marca: #e08524; }
+
+.btn-brand {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+}
+.btn-brand:hover,
+.btn-brand:focus {
+  background-color: #c97218;
+  border-color: #c97218;
+  color: #fff;
+}
+.btn-brand:disabled {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+  opacity: .5;
+}
+
+/* Miniatura de la camiseta en cada fila */
+.miniatura {
+  width: 64px;
+  height: 64px;
+  padding: .4rem;
+  background-color: #f1f1f1;
+  border-radius: .375rem;
+}
+.miniatura svg { width: 100%; height: 100%; }
+
+.tabla-carrito th { white-space: nowrap; }
+.tabla-carrito td,
+.tabla-carrito th[scope="row"] { vertical-align: middle; }
+
+/* El resumen se queda visible al hacer scroll en pantallas grandes */
+@media (min-width: 992px) {
+  .resumen {
+    position: sticky;
+    top: 5rem;
+  }
+}
+
+/* Foco visible para quien navega con teclado */
+.btn:focus-visible {
+  outline: 3px solid var(--marca);
+  outline-offset: 2px;
+}
