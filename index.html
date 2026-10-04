@@ -1,12 +1,15 @@
 <!doctype html>
-<html class="no-js" lang="">
+<html class="no-js" lang="es">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title></title>
-  <link rel="stylesheet" href="css/styles.css">
+  <title>Camisetas | Inicio</title>
   <meta name="description" content="">
+
+  <!-- Bootstrap primero, tu CSS después -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
 
   <meta property="og:title" content="">
   <meta property="og:type" content="">
@@ -21,11 +24,44 @@
   <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
 
-  <!-- Add your site or application content here -->
-  <p>Hello world! This is HTML5 Boilerplate.</p>
-  <script src="js/app.js"></script>
+<nav class="navbar navbar-expand-xl navbar-dark bg-dark sticky-top" aria-label="Navegación principal">
+  <div class="container-fluid">
+    <a class="navbar-brand fw-bold" href="index.html">Camisetas</a>
+
+    <button class="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#menu"
+            aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu">
+      <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
+        <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina2.html">Productos</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina3.html">Carrito</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina4.html">FAQ y contacto</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina5.html">Reseñas</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina6.html">Ayuda</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina7.html">Lealtad y eventos</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina8.html">Nosotros</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina9.html">Recursos</a></li>
+        <li class="nav-item"><a class="nav-link" href="pagina10.html">Diseñador</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+Content
+
+<footer class="bg-dark text-light text-center py-3 mt-auto">
+  <p class="mb-0">&copy; 2026 Camisetas</p>
+</footer>
+
+<!-- Scripts al final del body -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
 
 </body>
 

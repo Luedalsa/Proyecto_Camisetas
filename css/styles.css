@@ -245,3 +245,17 @@ textarea {
   }
 }
 
+/* Footer pegado abajo aunque la página tenga poco contenido */
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main { flex: 1; }
+
+/* Enlace activo con el color de la marca */
+.navbar .nav-link.active {
+  background-color: #e08524;
+  border-radius: 0.375rem;
+  color: #fff;
+}
