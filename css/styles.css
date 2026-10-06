@@ -304,3 +304,7 @@ main { flex: 1; }
   .acceso,
   .producto-imagen { transition: none; }
 }
+
+/* Menús desplegables de login y registro */
+.menu-auth { min-width: 18rem; }
+@media (max-width: 575.98px) { .menu-auth { min-width: 0; width: 100%; } }
