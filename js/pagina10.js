@@ -2,6 +2,7 @@
 import { Canvas, Path, Rect, IText, FabricImage, util } from "fabric";
 import { jsPDF } from "jspdf";
 import { cargarProductos } from "./productos.js";
+import { supabase } from "./supabase.js";
 
 /* ========================================================================
    Constantes
@@ -17,6 +18,7 @@ const AREA = { left: 175, top: 135, width: 150, height: 220 };
 const CENTRO = { x: AREA.left + AREA.width / 2, y: AREA.top + AREA.height / 2 };
 
 const CLAVE_GUARDADO = "diseno-camiseta";
+const TABLA_DISENOS = "disenos";
 const TIPOS_IMAGEN = ["image/png", "image/jpeg", "image/webp"];
 const MAX_ARCHIVO = 8 * 1024 * 1024; // 8 MB
 const MAX_LADO = 800;                 // las imágenes se reducen a 800 px por lado
@@ -358,25 +360,91 @@ function agregarTexto() {
 /* ========================================================================
    Guardar, cargar, limpiar y exportar
    ======================================================================== */
-function guardarDiseno() {
+function obtenerDatosDiseno() {
   const objetos = canvas
     .toObject(["nombreCapa"])
     .objects.map(({ clipPath, ...resto }) => resto); // el recorte se vuelve a crear al cargar
-  const datos = {
+  return {
     version: 1,
     camisetaId: productoActual?.id ?? null,
     fecha: new Date().toISOString(),
     objetos,
   };
+}
+
+function esDatosDiseno(datos) {
+  return Boolean(datos && Number(datos.version) === 1 && Array.isArray(datos.objetos));
+}
+
+function leerGuardadoLocal() {
+  try {
+    return JSON.parse(localStorage.getItem(CLAVE_GUARDADO));
+  } catch {
+    return null;
+  }
+}
+
+async function actualizarEstadoGuardado() {
+  let disponible = esDatosDiseno(leerGuardadoLocal());
+
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data, error } = await supabase
+        .from(TABLA_DISENOS)
+        .select("id")
+        .eq("usuario_id", user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+      disponible = disponible || Boolean(data);
+    }
+  } catch (error) {
+    console.error("No se pudo comprobar el diseño guardado:", error);
+  }
+
+  $cargar.disabled = !disponible;
+}
+
+async function guardarDiseno() {
+  const datos = obtenerDatosDiseno();
+  $guardar.disabled = true;
+
   try {
     localStorage.setItem(CLAVE_GUARDADO, JSON.stringify(datos));
-    marcarModificado(false);
     $cargar.disabled = false;
-    mostrarAviso("Diseño guardado en este navegador.");
   } catch (error) {
-    // Pasa si el navegador bloquea el almacenamiento o el diseño es demasiado grande
     console.error("No se pudo guardar el diseño:", error);
+    $guardar.disabled = false;
     mostrarAviso("No se pudo guardar: el diseño es muy pesado o el navegador bloquea el almacenamiento.", false);
+    return;
+  }
+
+  try {
+    const { data: { user } } = await supabase.auth.getUser();
+    if (!user) {
+      marcarModificado(false);
+      mostrarAviso("Diseño guardado en este navegador. Inicia sesión para guardarlo en la nube.");
+      return;
+    }
+
+    const { error } = await supabase
+      .from(TABLA_DISENOS)
+      .upsert({
+        usuario_id: user.id,
+        camiseta_id: datos.camisetaId,
+        datos,
+        updated_at: new Date().toISOString(),
+      }, { onConflict: "usuario_id" });
+
+    if (error) throw error;
+    marcarModificado(false);
+    mostrarAviso("Diseño guardado en Supabase.");
+  } catch (error) {
+    console.error("No se pudo guardar el diseño en Supabase:", error);
+    mostrarAviso("Se guardó localmente, pero no se pudo sincronizar con Supabase.", false);
+  } finally {
+    $guardar.disabled = false;
   }
 }
 
@@ -388,12 +456,30 @@ async function cargarGuardado() {
   if (modificado && !window.confirm("Perderás los cambios sin guardar. ¿Cargar el diseño guardado?")) return;
 
   let datos = null;
+  let origen = "local";
+
   try {
-    datos = JSON.parse(localStorage.getItem(CLAVE_GUARDADO));
-  } catch {
-    datos = null;
+    const { data: { user } } = await supabase.auth.getUser();
+    if (user) {
+      const { data, error } = await supabase
+        .from(TABLA_DISENOS)
+        .select("datos")
+        .eq("usuario_id", user.id)
+        .maybeSingle();
+
+      if (error) throw error;
+      datos = data?.datos ?? null;
+      origen = "Supabase";
+    }
+  } catch (error) {
+    console.error("No se pudo cargar el diseño desde Supabase:", error);
   }
-  if (!datos || !Array.isArray(datos.objetos)) {
+
+  if (!esDatosDiseno(datos)) {
+    datos = leerGuardadoLocal();
+    origen = "local";
+  }
+  if (!esDatosDiseno(datos)) {
     mostrarAviso("No hay un diseño guardado válido.", false);
     return;
   }
@@ -415,7 +501,7 @@ async function cargarGuardado() {
       canvas.add(obj);
     });
     canvas.requestRenderAll();
-    mostrarAviso("Diseño cargado.");
+    mostrarAviso(`Diseño cargado desde ${origen}.`);
   } catch (error) {
     console.error("No se pudo cargar el diseño:", error);
     mostrarAviso("No pudimos cargar el diseño guardado.", false);
@@ -628,11 +714,10 @@ document.addEventListener("DOMContentLoaded", async () => {
   aplicarCamiseta(inicial);
 
   conectarEventos();
-  try {
-    $cargar.disabled = !localStorage.getItem(CLAVE_GUARDADO);
-  } catch {
-    $cargar.disabled = true;
-  }
+  await actualizarEstadoGuardado();
+  supabase.auth.onAuthStateChange((evento) => {
+    if (["SIGNED_IN", "SIGNED_OUT"].includes(evento)) actualizarEstadoGuardado();
+  });
   cargando = false;
 
   construirCapas();
