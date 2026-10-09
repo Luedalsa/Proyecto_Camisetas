@@ -1,62 +1,380 @@
 <!doctype html>
-<html lang="en">
+<html class="no-js" lang="es">
 
 <head>
   <meta charset="utf-8">
-  <title>Page Not Found</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    * {
-      line-height: 1.2;
-      margin: 0;
-    }
+  <title>Camisetas | Página no encontrada y ayuda</title>
+  <meta name="description" content="No encontramos la página que buscabas. Ve a las secciones principales, pide ayuda, consulta nuestros teléfonos y ubica la tienda en el mapa.">
 
-    html {
-      color: #888;
-      display: table;
-      font-family: sans-serif;
-      height: 100%;
-      text-align: center;
-      width: 100%;
-    }
+  <!-- Bootstrap primero, luego tus CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/pagina6.css">
 
-    body {
-      display: table-cell;
-      vertical-align: middle;
-      margin: 2em auto;
-    }
+  <meta property="og:title" content="Camisetas | Página no encontrada y ayuda">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="">
+  <meta property="og:image" content="">
+  <meta property="og:image:alt" content="">
 
-    h1 {
-      color: #555;
-      font-size: 2em;
-      font-weight: 400;
-    }
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
 
-    p {
-      margin: 0 auto;
-      width: 280px;
-    }
-
-    @media only screen and (max-width: 280px) {
-
-      body,
-      p {
-        width: 95%;
-      }
-
-      h1 {
-        font-size: 1.5em;
-        margin: 0 0 0.3em;
-      }
-
-    }
-  </style>
+  <meta name="theme-color" content="#fafafa">
 </head>
 
-<body>
-  <h1>Page Not Found</h1>
-  <p>Sorry, but the page you were trying to view does not exist.</p>
+<body class="d-flex flex-column min-vh-100">
+
+<!-- ENCABEZADO + NAVEGACIÓN -->
+<header>
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark sticky-top" aria-label="Navegación principal">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">Camisetas</a>
+
+      <button class="navbar-toggler" type="button"
+              data-bs-toggle="collapse" data-bs-target="#menu"
+              aria-controls="menu" aria-expanded="false" aria-label="Abrir menú">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="menu">
+        <ul class="navbar-nav ms-auto mb-2 mb-xl-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Inicio</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina2.html">Productos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina3.html">Carrito</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina4.html">FAQ y contacto</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina5.html">Reseñas</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina6.html">Ayuda</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina7.html">Lealtad y eventos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina8.html">Nosotros</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina9.html">Recursos</a></li>
+          <li class="nav-item"><a class="nav-link" href="pagina10.html">Diseñador</a></li>
+        </ul>
+        <ul class="navbar-nav ms-xl-3 align-items-xl-center" id="auth-nav"></ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main>
+
+  <!-- 1. ERROR 404 -->
+  <section class="bg-light py-5 border-bottom" aria-labelledby="error-titulo">
+    <div class="container">
+      <div class="row align-items-center g-4">
+        <div class="col-md-7">
+          <p class="codigo-404 mb-0" aria-hidden="true">404</p>
+          <h1 id="error-titulo" class="display-5 fw-bold">Este sitio no existe</h1>
+          <p class="lead text-secondary mb-2">
+            La página que buscas no existe o cambió de lugar.
+          </p>
+          <p id="ruta-solicitada" class="small text-secondary d-none mb-0"></p>
+        </div>
+        <div class="col-md-5 text-center">
+          <!-- Camiseta rota/triste en SVG -->
+          <svg class="camiseta-404" viewBox="0 0 100 100" role="img" aria-label="Camiseta con cara triste">
+            <path d="M30 10 L10 25 L20 40 L28 35 L28 90 L72 90 L72 35 L80 40 L90 25 L70 10 Q50 24 30 10 Z"
+                  fill="#a29e9b" stroke="#212529" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="42" cy="50" r="2.5" fill="#212529"/>
+            <circle cx="58" cy="50" r="2.5" fill="#212529"/>
+            <path d="M42 66 Q50 58 58 66" fill="none" stroke="#212529" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. BOTONES ANIMADOS A LAS PÁGINAS PRINCIPALES -->
+  <section class="py-5" aria-labelledby="destinos-titulo">
+    <div class="container">
+      <h2 id="destinos-titulo" class="fw-bold text-center mb-4">¿A dónde quieres ir?</h2>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-md-4 col-lg-2">
+          <a href="index.html" class="btn btn-animado w-100 h-100">
+            <span class="btn-icono" aria-hidden="true">🏠</span>
+            <span>Inicio</span>
+          </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <a href="pagina2.html" class="btn btn-animado w-100 h-100">
+            <span class="btn-icono" aria-hidden="true">🛍️</span>
+            <span>Productos</span>
+          </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <a href="pagina3.html" class="btn btn-animado w-100 h-100">
+            <span class="btn-icono" aria-hidden="true">🛒</span>
+            <span>Carrito</span>
+          </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <a href="pagina10.html" class="btn btn-animado w-100 h-100">
+            <span class="btn-icono" aria-hidden="true">✏️</span>
+            <span>Diseñador</span>
+          </a>
+        </div>
+        <div class="col-6 col-md-4 col-lg-2">
+          <a href="pagina4.html" class="btn btn-animado w-100 h-100">
+            <span class="btn-icono" aria-hidden="true">❓</span>
+            <span>FAQ y contacto</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. AYUDA Y SOPORTE TÉCNICO -->
+  <section id="ayuda" class="bg-light py-5" aria-labelledby="ayuda-titulo">
+    <div class="container">
+      <h2 id="ayuda-titulo" class="fw-bold mb-1">Ayuda y soporte técnico</h2>
+      <p class="text-secondary mb-4">Busca una solución rápida o envíanos tu problema.</p>
+
+      <div class="row g-4">
+
+        <!-- Problemas comunes -->
+        <div class="col-lg-6">
+          <h3 class="h5 mb-3">Problemas comunes</h3>
+
+          <label for="buscar-ayuda" class="form-label small mb-1">Buscar en la ayuda</label>
+          <input id="buscar-ayuda" type="search" class="form-control mb-3"
+                 placeholder="Ej. carrito, imagen, PDF…" autocomplete="off">
+          <p id="estado-ayuda" class="visually-hidden" aria-live="polite"></p>
+
+          <div class="accordion" id="ayuda-acordeon">
+
+            <div class="accordion-item" data-ayuda>
+              <h4 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#ay-1" aria-expanded="false" aria-controls="ay-1">
+                  Mi carrito aparece vacío
+                </button>
+              </h4>
+              <div id="ay-1" class="accordion-collapse collapse" data-bs-parent="#ayuda-acordeon">
+                <div class="accordion-body">
+                  El carrito se guarda en tu navegador. Si usas modo incógnito, borraste los datos del
+                  sitio o abriste el sitio desde otro navegador, tendrás que agregar de nuevo tus camisetas
+                  desde <a href="pagina2.html">Productos</a>.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-ayuda>
+              <h4 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#ay-2" aria-expanded="false" aria-controls="ay-2">
+                  No puedo subir mi imagen al diseñador
+                </button>
+              </h4>
+              <div id="ay-2" class="accordion-collapse collapse" data-bs-parent="#ayuda-acordeon">
+                <div class="accordion-body">
+                  Usa un archivo PNG, JPG o WebP de máximo 8 MB. Si aun así falla, prueba con otra
+                  imagen o vuelve a cargar la página.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-ayuda>
+              <h4 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#ay-3" aria-expanded="false" aria-controls="ay-3">
+                  El diseñador no abre en mi celular
+                </button>
+              </h4>
+              <div id="ay-3" class="accordion-collapse collapse" data-bs-parent="#ayuda-acordeon">
+                <div class="accordion-body">
+                  El editor solo está disponible en computadora. El resto del sitio funciona en cualquier
+                  dispositivo.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-ayuda>
+              <h4 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#ay-4" aria-expanded="false" aria-controls="ay-4">
+                  No se descarga mi PDF
+                </button>
+              </h4>
+              <div id="ay-4" class="accordion-collapse collapse" data-bs-parent="#ayuda-acordeon">
+                <div class="accordion-body">
+                  Agrega al menos una imagen o un texto antes de exportar. Revisa también que tu navegador
+                  no esté bloqueando las descargas de este sitio.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item" data-ayuda>
+              <h4 class="accordion-header">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#ay-5" aria-expanded="false" aria-controls="ay-5">
+                  No puedo iniciar sesión
+                </button>
+              </h4>
+              <div id="ay-5" class="accordion-collapse collapse" data-bs-parent="#ayuda-acordeon">
+                <div class="accordion-body">
+                  Verifica tu correo y contraseña (mínimo 6 caracteres). Si acabas de registrarte,
+                  confirma tu cuenta desde el correo que te enviamos.
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <p id="ayuda-vacio" class="py-3 d-none mb-0">
+            No encontramos resultados. Prueba otra palabra o envíanos tu problema con el formulario.
+          </p>
+        </div>
+
+        <!-- Formulario de soporte -->
+        <div class="col-lg-6">
+          <h3 class="h5 mb-3">Reportar un problema</h3>
+
+          <div id="resultado-soporte" role="status" aria-live="polite" tabindex="-1"></div>
+
+          <form id="form-soporte" class="card card-body" novalidate>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label for="s-nombre" class="form-label">Nombre <span class="text-danger" aria-hidden="true">*</span></label>
+                <input id="s-nombre" name="nombre" type="text" class="form-control" maxlength="60"
+                       autocomplete="name" required aria-describedby="e-nombre">
+                <div id="e-nombre" class="invalid-feedback"></div>
+              </div>
+              <div class="col-md-6">
+                <label for="s-correo" class="form-label">Correo <span class="text-danger" aria-hidden="true">*</span></label>
+                <input id="s-correo" name="correo" type="email" class="form-control"
+                       autocomplete="email" required aria-describedby="e-correo">
+                <div id="e-correo" class="invalid-feedback"></div>
+              </div>
+              <div class="col-12">
+                <label for="s-tipo" class="form-label">¿Dónde ocurre el problema? <span class="text-danger" aria-hidden="true">*</span></label>
+                <select id="s-tipo" name="tipo" class="form-select" required aria-describedby="e-tipo">
+                  <option value="">Elige una opción</option>
+                  <option>Productos o carrito</option>
+                  <option>Diseñador</option>
+                  <option>Cuenta o inicio de sesión</option>
+                  <option>Página no encontrada (404)</option>
+                  <option>Otro</option>
+                </select>
+                <div id="e-tipo" class="invalid-feedback"></div>
+              </div>
+              <div class="col-12">
+                <label for="s-descripcion" class="form-label">Describe el problema <span class="text-danger" aria-hidden="true">*</span></label>
+                <textarea id="s-descripcion" name="descripcion" class="form-control" rows="4" maxlength="400"
+                          required aria-describedby="e-descripcion contador-soporte"></textarea>
+                <div class="d-flex justify-content-between">
+                  <div id="e-descripcion" class="invalid-feedback d-block"></div>
+                  <small id="contador-soporte" class="text-secondary ms-auto">0 / 400</small>
+                </div>
+              </div>
+              <div class="col-12 d-flex flex-wrap gap-2">
+                <button id="btn-soporte" type="submit" class="btn btn-brand">Enviar reporte</button>
+                <button type="reset" class="btn btn-outline-secondary">Borrar</button>
+              </div>
+            </div>
+          </form>
+          <p class="small text-secondary mt-2 mb-0">Los campos con * son obligatorios.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. TELÉFONOS Y MAPA -->
+  <section class="py-5" aria-labelledby="tienda-titulo">
+    <div class="container">
+      <h2 id="tienda-titulo" class="fw-bold mb-1">Visítanos o llámanos</h2>
+      <p class="text-secondary mb-4">Atención en tienda y por teléfono.</p>
+
+      <div class="row g-4">
+
+        <!-- Teléfonos y horario -->
+        <div class="col-lg-5">
+          <div class="card h-100">
+            <div class="card-body">
+              <h3 class="h5 mb-3">Teléfonos</h3>
+              <ul class="list-unstyled mb-4" id="lista-telefonos">
+                <li class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                  <div>
+                    <span class="d-block small text-secondary">Atención a clientes</span>
+                    <a href="tel:+523300000001" class="fw-semibold link-dark">33 0000 0001</a>
+                  </div>
+                  <button type="button" class="btn btn-outline-dark btn-sm" data-copiar="33 0000 0001"
+                          aria-label="Copiar teléfono de atención a clientes">Copiar</button>
+                </li>
+                <li class="d-flex flex-wrap align-items-center justify-content-between gap-2 mb-3">
+                  <div>
+                    <span class="d-block small text-secondary">Soporte técnico</span>
+                    <a href="tel:+523300000002" class="fw-semibold link-dark">33 0000 0002</a>
+                  </div>
+                  <button type="button" class="btn btn-outline-dark btn-sm" data-copiar="33 0000 0002"
+                          aria-label="Copiar teléfono de soporte técnico">Copiar</button>
+                </li>
+                <li class="d-flex flex-wrap align-items-center justify-content-between gap-2">
+                  <div>
+                    <span class="d-block small text-secondary">WhatsApp</span>
+                    <a href="https://wa.me/523300000003" class="fw-semibold link-dark">33 0000 0003</a>
+                  </div>
+                  <button type="button" class="btn btn-outline-dark btn-sm" data-copiar="33 0000 0003"
+                          aria-label="Copiar número de WhatsApp">Copiar</button>
+                </li>
+              </ul>
+
+              <h3 class="h5 mb-2">Horario</h3>
+              <p class="mb-1">Lunes a sábado, 10:00 a 19:00 h</p>
+              <p class="mb-3">
+                <span id="estado-tienda" class="badge text-bg-secondary" role="status">Calculando…</span>
+              </p>
+
+              <h3 class="h5 mb-2">Dirección</h3>
+              <address id="direccion" class="mb-0"></address>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mapa interactivo (el iframe lo arma js/pagina6.js) -->
+        <div class="col-lg-7">
+          <div class="mapa-marco">
+            <div id="mapa" class="mapa" aria-label="Mapa interactivo con la ubicación de la tienda"></div>
+          </div>
+          <p class="small mt-2 mb-0">
+            <a id="enlace-mapa" href="https://www.openstreetmap.org/" target="_blank" rel="noopener" class="link-dark">
+              Abrir el mapa completo (se abre en otra pestaña)
+            </a>
+          </p>
+          <noscript>
+            <p class="alert alert-warning mt-3">Activa JavaScript para ver el mapa.</p>
+          </noscript>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- AVISO (toast) -->
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="aviso" class="toast align-items-center border-0" role="status" aria-live="polite" aria-atomic="true">
+      <div class="d-flex">
+        <div id="aviso-texto" class="toast-body"></div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar aviso"></button>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<!-- PIE DE PÁGINA -->
+<footer class="bg-dark text-light text-center py-3 mt-auto">
+  <p class="mb-1"><a href="pagina5.html" class="link-light">Términos y privacidad</a> ·
+    <a href="pagina4.html" class="link-light">Contacto</a></p>
+  <p class="mb-0">&copy; 2026 Camisetas</p>
+</footer>
+
+<!-- Scripts al final del body. Parcel empaqueta los módulos de js/ -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="js/app.js"></script>
+<script type="module" src="js/pagina6.js"></script>
+<script type="module" src="js/auth.js"></script>
+
 </body>
 
 </html>
-<!-- IE needs 512+ bytes: https://docs.microsoft.com/archive/blogs/ieinternals/friendly-http-error-pages -->

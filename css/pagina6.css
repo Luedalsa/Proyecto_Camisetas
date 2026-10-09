@@ -1,0 +1,105 @@
+/* css/pagina6.css — estilos solo de la página 404 / ayuda */
+
+.codigo-404 {
+  font-size: clamp(4rem, 14vw, 8rem);
+  font-weight: 800;
+  line-height: 1;
+  color: var(--charcoal);
+}
+
+.camiseta-404 {
+  width: 100%;
+  max-width: 260px;
+  filter: drop-shadow(0 12px 18px rgba(44, 47, 48, .3));
+  animation: balanceo 3s ease-in-out infinite;
+  transform-origin: 50% 10%;
+}
+@keyframes balanceo {
+  0%, 100% { transform: rotate(-4deg); }
+  50%      { transform: rotate(4deg); }
+}
+
+/* Botones animados hacia las páginas principales */
+.btn-animado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  padding: 1.25rem .5rem;
+  border: 2px solid var(--graphite);
+  border-radius: .75rem;
+  background-color: var(--seashell);
+  color: var(--graphite);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  transition: transform .25s ease, box-shadow .25s ease, color .25s ease;
+}
+/* Relleno que sube desde abajo al pasar el cursor o enfocar */
+.btn-animado::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--graphite);
+  transform: translateY(101%);
+  transition: transform .3s ease;
+  z-index: -1;
+}
+.btn-animado:hover,
+.btn-animado:focus-visible {
+  color: var(--seashell);
+  transform: translateY(-6px);
+  box-shadow: 0 .75rem 1.5rem rgba(44, 47, 48, .25);
+}
+.btn-animado:hover::before,
+.btn-animado:focus-visible::before { transform: translateY(0); }
+
+.btn-icono {
+  font-size: 2rem;
+  display: inline-block;
+  transition: transform .3s ease;
+}
+.btn-animado:hover .btn-icono,
+.btn-animado:focus-visible .btn-icono { transform: scale(1.3) rotate(-8deg); }
+
+/* Mapa */
+.mapa-marco {
+  background-color: var(--superficie);
+  border: 1px solid var(--cool-steel);
+  border-radius: .5rem;
+  overflow: hidden;
+}
+.mapa { width: 100%; height: 100%; min-height: 24rem; }
+.mapa iframe { width: 100%; height: 24rem; border: 0; display: block; }
+.mapa-cargando { display: grid; place-items: center; height: 24rem; }
+
+address { font-style: normal; }
+
+.btn-brand:disabled {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: #fff;
+  opacity: .5;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: var(--superficie);
+  color: var(--graphite);
+}
+.accordion-button:focus {
+  border-color: var(--charcoal);
+  box-shadow: 0 0 0 .25rem rgba(89, 90, 94, .35);
+}
+
+#resultado-soporte:focus { outline: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .camiseta-404 { animation: none; }
+  .btn-animado,
+  .btn-animado::before,
+  .btn-icono { transition: none; }
+  .btn-animado:hover,
+  .btn-animado:focus-visible { transform: none; }
+}
