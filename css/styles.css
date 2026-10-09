@@ -252,15 +252,129 @@ body {
   flex-direction: column;
 }
 main { flex: 1; }
+/* ===== Paleta ===== */
+:root {
+  --seashell: #f7efe9;
+  --cool-steel: #a29e9b;
+  --rosy-granite: #8a8d93;
+  --charcoal: #595a5e;
+  --graphite: #2c2f30;
 
-/* Enlace activo con el color de la marca */
-.navbar .nav-link.active {
-  background-color: #e08524;
-  border-radius: 0.375rem;
-  color: #fff;
+  --marca: var(--graphite);          /* color de acción */
+  --marca-hover: var(--charcoal);
+  --superficie: color-mix(in srgb, var(--cool-steel) 22%, var(--seashell));
+
+  /* Bootstrap 5.3 usa estas variables en body, bg-dark, text-secondary, bordes, etc. */
+  --bs-body-bg: var(--seashell);
+  --bs-body-bg-rgb: 247, 239, 233;
+  --bs-body-color: var(--graphite);
+  --bs-body-color-rgb: 44, 47, 48;
+  --bs-secondary-rgb: 89, 90, 94;            /* .text-secondary = charcoal */
+  --bs-dark-rgb: 44, 47, 48;                 /* .bg-dark = graphite */
+  --bs-border-color: color-mix(in srgb, var(--cool-steel) 60%, var(--seashell));
 }
-/* ===== Variables y componentes compartidos ===== */
-:root { --marca: #e08524; }
+
+html { color: var(--graphite); }
+body { background-color: var(--seashell); }
+
+::selection { background: var(--cool-steel); color: var(--graphite); }
+::-moz-selection { background: var(--cool-steel); color: var(--graphite); }
+
+.bg-light { background-color: var(--superficie) !important; }
+
+/* ===== Navbar ===== */
+.navbar .nav-link.active {
+  background-color: var(--seashell);
+  border-radius: 0.375rem;
+  color: var(--graphite);
+}
+.navbar .btn-brand {                 /* Login sobre fondo graphite */
+  background-color: var(--seashell);
+  border-color: var(--seashell);
+  color: var(--graphite);
+}
+.navbar .btn-brand:hover,
+.navbar .btn-brand:focus {
+  background-color: var(--cool-steel);
+  border-color: var(--cool-steel);
+  color: var(--graphite);
+}
+.navbar .btn:focus-visible { outline-color: var(--seashell); }
+
+/* ===== Botón de marca ===== */
+.btn-brand {
+  background-color: var(--marca);
+  border-color: var(--marca);
+  color: var(--seashell);
+}
+.btn-brand:hover,
+.btn-brand:focus {
+  background-color: var(--marca-hover);
+  border-color: var(--marca-hover);
+  color: var(--seashell);
+}
+
+/* Botones outline-dark / dark en la misma gama */
+.btn-outline-dark {
+  --bs-btn-color: var(--graphite);
+  --bs-btn-border-color: var(--graphite);
+  --bs-btn-hover-bg: var(--graphite);
+  --bs-btn-hover-border-color: var(--graphite);
+  --bs-btn-hover-color: var(--seashell);
+  --bs-btn-active-bg: var(--charcoal);
+  --bs-btn-active-border-color: var(--charcoal);
+  --bs-btn-active-color: var(--seashell);
+}
+.btn-outline-secondary {
+  --bs-btn-color: var(--charcoal);
+  --bs-btn-border-color: var(--charcoal);
+  --bs-btn-hover-bg: var(--charcoal);
+  --bs-btn-hover-border-color: var(--charcoal);
+  --bs-btn-hover-color: var(--seashell);
+  --bs-btn-active-bg: var(--graphite);
+  --bs-btn-active-border-color: var(--graphite);
+  --bs-btn-active-color: var(--seashell);
+}
+.badge.text-bg-light { background-color: var(--seashell) !important; color: var(--graphite) !important; }
+
+/* ===== Tarjetas ===== */
+.producto,
+.acceso {
+  transition: transform .2s ease, box-shadow .2s ease;
+}
+.producto:hover,
+.acceso:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 .75rem 1.5rem rgba(44, 47, 48, .25);
+}
+.producto-imagen {
+  background-color: var(--superficie);
+  padding: 1.5rem;
+}
+.producto-imagen svg { width: 100%; max-width: 140px; }
+
+/* Foco visible para quien navega con teclado */
+.btn:focus-visible,
+.form-control:focus-visible,
+.form-select:focus-visible {
+  outline: 3px solid var(--marca);
+  outline-offset: 2px;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--charcoal);
+  box-shadow: 0 0 0 .25rem rgba(89, 90, 94, .35);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .producto,
+  .acceso,
+  .producto-imagen { transition: none; }
+}
+
+/* Menús desplegables de login y registro */
+.menu-auth { min-width: 18rem; }
+@media (max-width: 575.98px) { .menu-auth { min-width: 0; width: 100%; } }
 
 .btn-brand {
   background-color: var(--marca);

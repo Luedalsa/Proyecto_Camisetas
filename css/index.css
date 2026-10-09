@@ -1,7 +1,7 @@
 .hero-shirt {
   width: 100%;
   max-width: 380px;
-  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, .2));
+  filter: drop-shadow(0 12px 18px rgba(44, 47, 48, .3));
   transition: transform .3s ease;
 }
 .hero-shirt:hover { transform: rotate(-4deg) scale(1.04); }
@@ -9,7 +9,14 @@
 .paso-icono,
 .acceso-icono { font-size: 2.5rem; }
 
-.cta-banda { background-color: var(--marca); }
+/* Banda final: charcoal con botón claro (el btn-dark se perdería sobre graphite) */
+.cta-banda { background-color: var(--charcoal); color: var(--seashell); }
+.cta-banda .btn-dark {
+  background-color: var(--seashell);
+  border-color: var(--seashell);
+  color: var(--graphite);
+}
+.cta-banda .btn-dark:hover { background-color: var(--cool-steel); border-color: var(--cool-steel); }
 
 @media (prefers-reduced-motion: reduce) {
   .hero-shirt { transition: none; }
