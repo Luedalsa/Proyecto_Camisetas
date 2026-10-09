@@ -675,7 +675,7 @@ function conectarEventos() {
 /* ========================================================================
    Inicio
    ======================================================================== */
-function llenarCamisetas() {
+function llenarNullShirts() {
   $camiseta.replaceChildren(
     ...productos.map((p) => {
       const opcion = document.createElement("option");
@@ -704,7 +704,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   cargando = true;
-  llenarCamisetas();
+  llenarNullShirts();
   crearLienzo();
 
   // pagina10.html#producto-3 abre el editor con esa camiseta

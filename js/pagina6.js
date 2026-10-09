@@ -4,7 +4,7 @@
    Datos de la tienda (cámbialos por los reales)
    ======================================================================== */
 const TIENDA = {
-  nombre: "Camisetas",
+  nombre: "Null Shirts",
   direccion: ["Av. Juárez 000, Centro", "44100 Guadalajara, Jalisco, México"],
   lat: 20.6767,
   lng: -103.3475,
