@@ -6,11 +6,32 @@
 }
 .hero-shirt:hover { transform: rotate(-4deg) scale(1.04); }
 
+.hero-section {
+  background: url("../img/BG2.png") center bottom / 100% auto no-repeat;
+  background-color: var(--graphite);
+  color: var(--seashell);
+}
+.hero-copy {
+  background-color: rgba(0, 5, 7, .45);
+  margin-left: calc((100vw - 100%) / -2);
+  padding: 2rem 2rem 2rem max(2rem, calc((100vw - 100%) / 2 + 2rem));
+
+  box-shadow: 0 0 30px rgb(0 5 7);
+}
+.hero-section .lead { color: var(--seashell) !important; }
+.hero-section .btn-outline-dark {
+  --bs-btn-color: var(--seashell);
+  --bs-btn-border-color: var(--seashell);
+  --bs-btn-hover-bg: var(--seashell);
+  --bs-btn-hover-border-color: var(--seashell);
+  --bs-btn-hover-color: var(--graphite);
+}
+
 .paso-icono,
 .acceso-icono { font-size: 2.5rem; }
 
 .destacados-section {
-  background: url("../img/BG.png") center / cover no-repeat;
+  background: url("../img/BG.png") center top / cover no-repeat;
 }
 
 /* Banda final: charcoal con botón claro (el btn-dark se perdería sobre graphite) */
