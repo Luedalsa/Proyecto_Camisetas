@@ -105,47 +105,49 @@
   <!-- Separador visual entre el hero y "Cómo funciona" -->
   <div class="separador-como-funciona" aria-hidden="true"></div>
 
-  <!-- 2. CÓMO FUNCIONA -->
-  <section class="como-funciona py-5" aria-labelledby="como-titulo">
-    <canvas class="como-funciona-particulas" aria-hidden="true"></canvas>
-    <div class="container position-relative">
-      <h2 id="como-titulo" class="text-center fw-bold mb-4">Cómo funciona</h2>
-      <div class="row g-4 text-center">
-        <div class="col-md-4">
-          <div class="paso-icono" aria-hidden="true">👕</div>
-          <h3 class="h5 mt-3">1. Elige tu camiseta</h3>
-          <p class="mb-0">Escoge modelo, color y talla entre nuestros productos.</p>
-        </div>
-        <div class="col-md-4">
-          <div class="paso-icono" aria-hidden="true">🎨</div>
-          <h3 class="h5 mt-3">2. Diseña</h3>
-          <p class="mb-0">Mueve, escala y rota tu arte directamente en el editor.</p>
-        </div>
-        <div class="col-md-4">
-          <div class="paso-icono" aria-hidden="true">📦</div>
-          <h3 class="h5 mt-3">3. Visualiza y compra</h3>
-          <p class="mb-0">Revisa tu diseño en 3D o expórtalo a PDF y agrégalo al carrito.</p>
+  <div class="particulas-contenedor">
+    <canvas class="particulas-canvas" aria-hidden="true"></canvas>
+
+    <!-- 2. CÓMO FUNCIONA -->
+    <section class="como-funciona particulas-seccion py-5" aria-labelledby="como-titulo">
+      <div class="container position-relative">
+        <h2 id="como-titulo" class="text-center fw-bold mb-4">Cómo funciona</h2>
+        <div class="row g-4 text-center">
+          <div class="col-md-4">
+            <div class="paso-icono" aria-hidden="true">👕</div>
+            <h3 class="h5 mt-3">1. Elige tu camiseta</h3>
+            <p class="mb-0">Escoge modelo, color y talla entre nuestros productos.</p>
+          </div>
+          <div class="col-md-4">
+            <div class="paso-icono" aria-hidden="true">🎨</div>
+            <h3 class="h5 mt-3">2. Diseña</h3>
+            <p class="mb-0">Mueve, escala y rota tu arte directamente en el editor.</p>
+          </div>
+          <div class="col-md-4">
+            <div class="paso-icono" aria-hidden="true">📦</div>
+            <h3 class="h5 mt-3">3. Visualiza y compra</h3>
+            <p class="mb-0">Revisa tu diseño en 3D o expórtalo a PDF y agrégalo al carrito.</p>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 3. DESTACADOS (se generan desde js/index.js) -->
-  <section class="destacados-section py-5" aria-labelledby="destacados-titulo">
-    <div class="container">
-      <div class="d-flex justify-content-between align-items-end mb-4">
-        <h2 id="destacados-titulo" class="fw-bold mb-0">Destacados y novedades</h2>
-        <a href="pagina2.html" class="link-dark">Ver todos →</a>
+    <!-- 3. DESTACADOS (se generan desde js/index.js) -->
+    <section class="destacados-section particulas-seccion py-5" aria-labelledby="destacados-titulo">
+      <div class="container position-relative">
+        <div class="d-flex justify-content-between align-items-end mb-4">
+          <h2 id="destacados-titulo" class="fw-bold mb-0">Destacados y novedades</h2>
+          <a href="pagina2.html" class="link-dark">Ver todos →</a>
+        </div>
+        <div id="destacados" class="row g-4"></div>
       </div>
-      <div id="destacados" class="row g-4"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- 4. ACCESOS RÁPIDOS -->
-  <section class="py-5" aria-labelledby="accesos-titulo">
-    <div class="container">
-      <h2 id="accesos-titulo" class="text-center fw-bold mb-4">Explora el sitio</h2>
-      <div class="row g-4">
+    <!-- 4. ACCESOS RÁPIDOS -->
+    <section class="explora-section particulas-seccion py-5" aria-labelledby="accesos-titulo">
+      <div class="container position-relative">
+        <h2 id="accesos-titulo" class="text-center fw-bold mb-4">Explora el sitio</h2>
+        <div class="row g-4">
         <div class="col-6 col-lg-3">
           <div class="card acceso h-100 text-center position-relative">
             <div class="card-body">
@@ -182,9 +184,10 @@
             </div>
           </div>
         </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </div>
 
   <!-- 5. LLAMADO A LA ACCIÓN FINAL -->
   <section class="cta-banda text-center text-white py-5" aria-labelledby="cta-titulo">

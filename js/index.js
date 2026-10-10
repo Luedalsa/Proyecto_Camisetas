@@ -5,9 +5,9 @@ import { cargarProductos } from "./productos.js";
 const IDS_DESTACADOS = [1, 2, 3, 4, 5, 6, 7, 8];
 
 function iniciarParticulas() {
-  const canvas = document.querySelector(".como-funciona-particulas");
-  const section = canvas?.closest(".como-funciona");
-  if (!canvas || !section) return;
+  const canvas = document.querySelector(".particulas-canvas");
+  const wrapper = canvas?.closest(".particulas-contenedor");
+  if (!canvas || !wrapper) return;
 
   const ctx = canvas.getContext("2d");
   if (!ctx) return;
@@ -19,7 +19,7 @@ function iniciarParticulas() {
 
   function resize() {
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const bounds = section.getBoundingClientRect();
+    const bounds = wrapper.getBoundingClientRect();
     width = bounds.width;
     height = bounds.height;
     canvas.width = width * dpr;
@@ -38,9 +38,9 @@ function iniciarParticulas() {
       this.size = 3 + Math.random() * 2;
       this.angle = Math.random() * Math.PI * 2;
       this.rotation = (Math.random() - 0.5) * 0.025;
-      this.vx = (Math.random() - 0.5) * 0.5;
-      this.vy = 20 + Math.random() * 0.8;
-      this.opacity = 0.2 + Math.random() * 0.6;
+      this.vx = (Math.random() - 0.5) * 5;
+      this.vy = 5 + Math.random() * 0.8;
+      this.opacity = 0.2 + Math.random() * 0.2;
     }
 
     update() {
