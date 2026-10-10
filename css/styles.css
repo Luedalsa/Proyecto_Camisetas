@@ -337,6 +337,51 @@ body { background-color: var(--seashell); }
 }
 .badge.text-bg-light { background-color: var(--seashell) !important; color: var(--graphite) !important; }
 
+/* Botones animados hacia las páginas principales */
+.btn-animado {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .35rem;
+  padding: 1.25rem .5rem;
+  border: 2px solid var(--graphite);
+  border-radius: .75rem;
+  background-color: var(--seashell);
+  color: var(--graphite);
+  font-weight: 600;
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+  text-decoration: none;
+  transition: transform .25s ease, box-shadow .25s ease, color .25s ease;
+}
+.btn-animado::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-color: var(--graphite);
+  transform: translateY(101%);
+  transition: transform .3s ease;
+  z-index: -1;
+}
+.btn-animado:hover,
+.btn-animado:focus-visible {
+  color: var(--seashell);
+  transform: translateY(-6px);
+  box-shadow: 0 .75rem 1.5rem rgba(44, 47, 48, .25);
+}
+.btn-animado:hover::before,
+.btn-animado:focus-visible::before { transform: translateY(0); }
+
+.btn-icono {
+  font-size: 2rem;
+  display: inline-block;
+  transition: transform .3s ease;
+}
+.btn-animado:hover .btn-icono,
+.btn-animado:focus-visible .btn-icono { transform: scale(1.3) rotate(-8deg); }
+
 /* ===== Tarjetas ===== */
 .producto,
 .acceso {
@@ -367,9 +412,16 @@ body { background-color: var(--seashell); }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .btn-animado,
+  .btn-animado::before,
+  .btn-icono,
   .producto,
   .acceso,
   .producto-imagen { transition: none; }
+  .btn-animado:hover,
+  .btn-animado:focus-visible,
+  .producto:hover,
+  .acceso:hover { transform: none; }
 }
 
 /* Menús desplegables de login y registro */
