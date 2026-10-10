@@ -422,3 +422,63 @@ body { background-color: var(--seashell); }
 /* Menús desplegables de login y registro */
 .menu-auth { min-width: 18rem; }
 @media (max-width: 575.98px) { .menu-auth { min-width: 0; width: 100%; } }
+
+/* ===== Órbita de estampados alrededor de la camiseta del hero ===== */
+.orbita-escena {
+  --radio: clamp(120px, 38vw, 220px);   /* distancia al centro */
+  --tam: clamp(44px, 12vw, 72px);       /* tamaño de cada estampado */
+  position: relative;
+  width: 100%;
+  max-width: 380px;
+  aspect-ratio: 1;
+  margin-inline: auto;
+  perspective: 1000px;
+  transform-style: preserve-3d;         /* camiseta y anillo comparten el mismo espacio 3D */
+}
+.orbita-escena .hero-shirt {
+  display: block;
+  width: 100%;
+  max-width: none;
+}
+
+.orbita {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  animation: orbitar 20s linear infinite;
+  pointer-events: none;
+}
+
+.estampado {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--tam);
+  height: var(--tam);
+  margin: calc(var(--tam) / -2) 0 0 calc(var(--tam) / -2);
+  --a: calc(var(--i) * 45deg);          /* 8 estampados = 45° entre cada uno */
+  transform: rotateY(var(--a)) translateZ(var(--radio));
+  transform-style: preserve-3d;
+}
+.estampado img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  /* contra-giro: el estampado siempre mira de frente al espectador */
+  animation: contragiro 20s linear infinite;
+  filter: drop-shadow(0 4px 6px rgba(0, 0, 0, .35));
+}
+
+@keyframes orbitar {
+  to { transform: rotateY(360deg); }
+}
+@keyframes contragiro {
+  from { transform: rotateY(calc(var(--a) * -1)); }
+  to   { transform: rotateY(calc(var(--a) * -1 - 360deg)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbita,
+  .estampado img { animation: none; }
+}
