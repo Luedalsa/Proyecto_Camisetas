@@ -2,7 +2,7 @@
 import { cargarProductos } from "./productos.js";
 
 // Ids de los productos que se muestran como destacados
-const IDS_DESTACADOS = [1, 2, 3, 4];
+const IDS_DESTACADOS = [1, 2, 3, 4, 5];
 
 document.addEventListener("DOMContentLoaded", async () => {
   const contenedor = document.getElementById("destacados");

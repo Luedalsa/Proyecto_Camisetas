@@ -9,6 +9,10 @@
 .paso-icono,
 .acceso-icono { font-size: 2.5rem; }
 
+.destacados-section {
+  background: url("../img/BG.png") center / cover no-repeat;
+}
+
 /* Banda final: charcoal con botón claro (el btn-dark se perdería sobre graphite) */
 .cta-banda { background-color: var(--charcoal); color: var(--seashell); }
 .cta-banda .btn-dark {
