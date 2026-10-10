@@ -1,9 +1,0 @@
-id,nombre,descripcion,material,precio,color,color_nombre,stock,etiqueta
-1,"Camiseta Clásica Naranja","Corte recto y tela suave. La base ideal para estampar tu arte.","Algodón 100%",249,#e08524,Naranja,12,Novedad
-2,"Camiseta Negra Básica","El negro de siempre, con cuello reforzado que no se deforma.","Algodón 100%",229,#2b2b2b,Negro,8,
-3,"Camiseta Azul Océano","Azul profundo que resalta los diseños claros.","Algodón peinado",259,#2f6fb5,Azul,5,Popular
-4,"Camiseta Blanca Lienzo","Un lienzo en blanco, perfecto para colores vivos.","Algodón 100%",219,#f4f4f4,Blanco,3,
-5,"Camiseta Verde Bosque","Verde oscuro, fresco y discreto para uso diario.","Algodón peinado",249,#2e7d4f,Verde,10,
-6,"Camiseta Roja Carmín","Rojo intenso con tela de gramaje medio.","Algodón peinado",259,#c0392b,Rojo,6,
-7,"Camiseta Gris Jaspeado","Gris con textura jaspeada, ligera y resistente al lavado.","Mezcla algodón-poliéster",239,#9aa0a6,Gris,0,
-8,"Camiseta Morada Atardecer","Morado de edición limitada, con acabado suave.","Algodón peinado",269,#6b4fa0,Morado,7,Novedad
