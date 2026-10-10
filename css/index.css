@@ -33,6 +33,19 @@
 .destacados-section {
   background: url("../img/BG.png") center top / cover no-repeat;
 }
+.destacados-section .producto {
+  background: rgba(247, 239, 233, .18);
+  border: 1px solid rgba(247, 239, 233, .45);
+  box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.destacados-section .producto-imagen {
+  background: rgba(247, 239, 233, .12);
+}
+.destacados-section .producto:hover {
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, .28);
+}
 
 /* Banda final: charcoal con botón claro (el btn-dark se perdería sobre graphite) */
 .cta-banda { background-color: var(--charcoal); color: var(--seashell); }
